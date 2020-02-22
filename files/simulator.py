@@ -81,7 +81,7 @@ async def on_message(message):
 - Welcome to Hugs and Kisses!
 + Prefix: {profile["prefix"]}
 
-- Commands: help, join, start, stop, [digit], reset, board, players
+- Commands: help, join, start, stop, [digit], reset, board, players, force @[name], forcestart
 
 - How to play
 + This game is designed for two players only.
@@ -129,7 +129,6 @@ Emoji test: ❤️ 💚```"""
     
     elif text[0] == "stop":
         await reply(message, "sorry, you can't stop the bot which has been deployed!")
-        # await client.logout()
     
     elif text[0] == "reset":
         reset()
@@ -156,6 +155,17 @@ Emoji test: ❤️ 💚```"""
             await reply(message, "there aren't enough players.")
             return
         
+        try:
+            new_game.start()
+            await message.channel.send("The game has started! Player order is the order in which you joined.")
+            await message.channel.send(new_game.board)
+        except Exception as e:
+            await reply(message, str(e))
+
+    elif text[0] == "forcestart":
+        if len(players) < 2:
+            await reply(message, "there aren't enough players.")
+            return
         try:
             new_game.start()
             await message.channel.send("The game has started! Player order is the order in which you joined.")
@@ -197,7 +207,7 @@ Emoji test: ❤️ 💚```"""
             await message.channel.send(str(e))
     
     else:
-        out = f"that is an invalid command. Type {profile['prefix']} help for more information."
+        out = f"that is an invalid command. Type {profile['prefix']}help for more information."
         await reply(message, out)
 
 import os
