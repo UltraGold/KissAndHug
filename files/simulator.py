@@ -158,7 +158,8 @@ Emoji test: ❤️ 💚```"""
         
         try:
             new_game.start()
-            await message.channel.send("The game has started! Player order is the order in which you joined.")
+            await message.channel.send("The game has started!")
+            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
             await message.channel.send(new_game.board)
         except Exception as e:
             await reply(message, str(e))
@@ -170,6 +171,7 @@ Emoji test: ❤️ 💚```"""
         try:
             new_game.start()
             await message.channel.send("The game has started! Player order is the order in which you joined.")
+            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
             await message.channel.send(new_game.board)
         except Exception as e:
             await reply(message, str(e))
@@ -196,13 +198,14 @@ Emoji test: ❤️ 💚```"""
                     await message.channel.send(f"A tie game!")
                     reset()
                 new_game.next_turn()
+                await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
             else:
                 if has_won[1] == new_game.player1:
                     await message.channel.send(f"{players[0].mention} has won!")
-                    await message.channel.send(f"The winning set was: {str(has_won[2])}")
+                    await message.channel.send(f"The winning set was: `{str(has_won[2])}`")
                 else:
                     await message.channel.send(f"{players[1].mention} has won!")
-                    await message.channel.send(f"The winning set was: {str(has_won[2])}")
+                    await message.channel.send(f"The winning set was: `{str(has_won[2])}`")
                 reset()
         except Exception as e:
             await message.channel.send(str(e))
@@ -215,7 +218,7 @@ Emoji test: ❤️ 💚```"""
             if difflib.SequenceMatcher(None, command, text[0]).ratio() > ratio:
                 ratio = difflib.SequenceMatcher(None, command, text[0]).ratio()
                 actual = command
-        out = f"that is an invalid command. Did you mean {profile['prefix']}{actual} instead? Type {profile['prefix']}help for more information."
+        out = f"that is an invalid command. Did you mean `{profile['prefix']}{actual}` instead? Type `{profile['prefix']}help` for more information."
         await reply(message, out)
 
 import os
