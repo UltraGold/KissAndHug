@@ -159,8 +159,12 @@ Emoji test: ❤️ 💚```"""
         try:
             new_game.start()
             await message.channel.send("The game has started!")
-            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
             await message.channel.send(new_game.board)
+            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
+            if new_game.current_player.num == 0:
+                await message.channel.send("Their symbol is 💚.")
+            else:
+                await message.channel.send("Their symbol is ❤️.")
         except Exception as e:
             await reply(message, str(e))
 
@@ -171,8 +175,12 @@ Emoji test: ❤️ 💚```"""
         try:
             new_game.start()
             await message.channel.send("The game has started! Player order is the order in which you joined.")
-            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
             await message.channel.send(new_game.board)
+            await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
+            if new_game.current_player.num == 0:
+                await message.channel.send("Their symbol is 💚.")
+            else:
+                await message.channel.send("Their symbol is ❤️.")
         except Exception as e:
             await reply(message, str(e))
 
@@ -197,8 +205,13 @@ Emoji test: ❤️ 💚```"""
                 if moves == len(new_game.board.board_values):
                     await message.channel.send(f"A tie game!")
                     reset()
+                    return
                 new_game.next_turn()
                 await message.channel.send(f"It is {players[new_game.current_player.num].mention}'s turn.")
+                if new_game.current_player.num == 0:
+                    await message.channel.send("Their symbol is 💚.")
+                else:
+                    await message.channel.send("Their symbol is ❤️.")
             else:
                 if has_won[1] == new_game.player1:
                     await message.channel.send(f"{players[0].mention} has won!")
