@@ -129,7 +129,7 @@ Emoji test: ❤️ 💚```"""
     
     elif text[0] == "stop":
         await reply(message, "sorry, you can't stop the bot which has been deployed!")
-        await client.logout()
+        # await client.logout()
     
     elif text[0] == "reset":
         reset()
