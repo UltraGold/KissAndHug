@@ -14,7 +14,7 @@ sum_up_to = board_solution_tuple[1]
 new_board = Board(board_solution, sum_up_to)
 new_game = Game(new_board)
 
-with open("profile.json") as profile_file:
+with open("files/profile.json") as profile_file:
     profile = json.load(profile_file)
 
 def reset():
@@ -128,7 +128,7 @@ Emoji test: ❤️ 💚```"""
         await reply(message, "you have joined the game.")
     
     elif text[0] == "stop":
-        await reply(message, "I'm going, goodbye!")
+        await reply(message, "sorry, you can't stop the bot which has been deployed!")
         await client.logout()
     
     elif text[0] == "reset":
