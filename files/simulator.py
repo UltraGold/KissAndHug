@@ -200,7 +200,13 @@ Emoji test: ❤️ 💚```"""
         out = f"that is an invalid command. Type {profile['prefix']} help for more information."
         await reply(message, out)
 
-client.run(profile["token"])
+import os
+is_production = os.environ.get("token", None)
+
+if not is_production:
+    client.run(profile["token"])
+else:
+    client.run(is_production)
 
 """
 board_solution_tuple = board_solution_generator()
