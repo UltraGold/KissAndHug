@@ -2,6 +2,7 @@
 from model import *
 import discord
 import json
+import difflib
 
 players = []
 moves = 0
@@ -207,7 +208,14 @@ Emoji test: ❤️ 💚```"""
             await message.channel.send(str(e))
     
     else:
-        out = f"that is an invalid command. Type {profile['prefix']}help for more information."
+        commands = ["force", "help", "join", "start", "stop", "reset", "board", "players", "forcestart"]
+        ratio = -1
+        actual = ""
+        for command in commands:
+            if difflib.SequenceMatcher(None, command, text[0]).ratio() > ratio:
+                ratio = difflib.SequenceMatcher(None, command, text[0]).ratio()
+                actual = command
+        out = f"that is an invalid command. Did you mean {profile['prefix']}{actual} instead? Type {profile['prefix']}help for more information."
         await reply(message, out)
 
 import os
