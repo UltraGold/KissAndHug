@@ -1,1 +1,1 @@
-worker: python simulator.py
+worker: python files/simulator.py
