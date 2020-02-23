@@ -72,9 +72,9 @@ class Board:
             if square.selected_by is None:
                 output += "* " + str(square.number) + "\n"
             elif square.selected_by.num == 0:
-                output += "+ " + str(square.number) + " 💚\n"
+                output += "* " + str(square.number) + " 💚\n"
             else:
-                output += "- " + str(square.number) + " ❤️\n"
+                output += "* " + str(square.number) + " ❤️\n"
         output += "```"
         return output
 
