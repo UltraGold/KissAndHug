@@ -1,6 +1,6 @@
 ```diff
 - Welcome to Hugs and Kisses!
-+ Prefix: {profile["prefix"]}
++ Prefix: {prefix}
 
 - Commands: help, join, start, stop, [digit], reset, board, players, force @[name], forcestart
 
@@ -16,15 +16,15 @@
 + Board: [1, 6, 9, 10, 11, 3, 8, 200, 5, 4, 2]
 + N: 6
 
-+ Player 1: {profile["prefix"]}5
-+ Player 2: {profile["prefix"]}6
-+ Player 1: {profile["prefix"]}1
-+ Player 2: {profile["prefix"]}9
-+ Player 1: {profile["prefix"]}3
-+ Player 2: {profile["prefix"]}8
-+ Player 1: {profile["prefix"]}200
-+ Player 2: {profile["prefix"]}11
-+ Player 1: {profile["prefix"]}2
++ Player 1: {prefix}5
++ Player 2: {prefix}6
++ Player 1: {prefix}1
++ Player 2: {prefix}9
++ Player 1: {prefix}3
++ Player 2: {prefix}8
++ Player 1: {prefix}200
++ Player 2: {prefix}11
++ Player 1: {prefix}2
 
 - Player 1 wins, the subset of numbers being [1, 3, 2]
 
