@@ -18,7 +18,7 @@ new_game = Game(new_board)
 with open("files/profile.json") as profile_file:
     profile = json.load(profile_file)
 
-def reset():
+def reset(): # hacky way to reset, not good practice, mostly because the Player class does not have a 'name'
     global board_solution_tuple
     global board_solution
     global sum_up_to
@@ -78,37 +78,9 @@ async def on_message(message):
         return
     
     if text[0] == "help":
-        out = f"""```diff
-- Welcome to Hugs and Kisses!
-+ Prefix: {profile["prefix"]}
-
-- Commands: help, join, start, stop, [digit], reset, board, players, force @[name], forcestart
-
-- How to play
-+ This game is designed for two players only.
-+ Once the game starts, you are given a list of numbers.
-+ The first person to choose a subset of three numbers or more that add to a given sum N wins!
-+ The game keeps on going until either one person wins or the game is tied.
-+ Player 1 goes first, followed by player 2, followed by player 1, etc.
-+ If someone has used a number, that number can not be used again. 
-
-- Example
-+ Board: [1, 6, 9, 10, 11, 3, 8, 200, 5, 4, 2]
-+ N: 6
-
-+ Player 1: {profile["prefix"]}5
-+ Player 2: {profile["prefix"]}6
-+ Player 1: {profile["prefix"]}1
-+ Player 2: {profile["prefix"]}9
-+ Player 1: {profile["prefix"]}3
-+ Player 2: {profile["prefix"]}8
-+ Player 1: {profile["prefix"]}200
-+ Player 2: {profile["prefix"]}11
-+ Player 1: {profile["prefix"]}2
-
-- Player 1 wins, the subset of numbers being [1, 3, 2]
-
-Emoji test: ❤️ 💚```"""
+        with open("files/help.txt") as help_file:
+            out = help_file.read()
+            out.format(prefix=profile["prefix"])
         await message.channel.send(out)
     
     elif text[0] == "join":
@@ -130,6 +102,9 @@ Emoji test: ❤️ 💚```"""
     
     elif text[0] == "stop":
         await reply(message, "sorry, you can't stop the bot which has been deployed!")
+    
+    elif text[0] == "version":
+        await reply(message, "this command is used for ensuring the deployed version is up-to-date. v1.0.1")
     
     elif text[0] == "reset":
         reset()
