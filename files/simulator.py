@@ -80,8 +80,7 @@ async def on_message(message):
     if text[0] == "help":
         with open("files/help.txt") as help_file:
             out = help_file.read()
-            out.format(prefix=profile["prefix"])
-        await message.channel.send(out)
+        await message.channel.send(out.format(prefix=profile["prefix"]))
     
     elif text[0] == "join":
         if message.author in players:
