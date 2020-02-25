@@ -6,6 +6,7 @@ import difflib
 
 players = []
 moves = 0
+channels = {}
 
 client = discord.Client()
 board_solution_tuple = board_solution_generator()
@@ -54,6 +55,9 @@ async def on_message(message):
 
     if not message.content.startswith(profile["prefix"]):
         return
+    
+    if isinstance(message.channel, discord.DMChannel):
+        await reply(message, "this bot is meant for servers (to play with multiple people), not DMing!")
 
     text = message.content[2:].split()
 
